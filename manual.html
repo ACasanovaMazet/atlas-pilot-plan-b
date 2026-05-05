@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ATLAS — Student Manual</title>
+<meta name="description" content="Universal knowledge reference for the ATLAS simulation. Always available alongside your team briefing." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap">
+<link rel="stylesheet" href="./assets/styles.css">
+<style>
+  /* Manual-specific layout: sticky TOC + scrollable content */
+  .manual-layout { display: grid; grid-template-columns: 240px 1fr; gap: 32px; max-width: 1200px; margin: 0 auto; }
+  @media (max-width: 900px) { .manual-layout { grid-template-columns: 1fr; } .toc { position: static !important; } }
+  .toc { position: sticky; top: 90px; align-self: start; max-height: calc(100vh - 120px); overflow-y: auto; padding: 16px; background: rgba(15, 22, 41, 0.6); border: 1px solid var(--border); border-radius: 12px; font-size: 13px; }
+  .toc h3 { color: var(--text-2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; margin: 12px 0 6px; }
+  .toc h3:first-child { margin-top: 0; }
+  .toc a { display: block; color: var(--text); padding: 4px 8px; border-radius: 4px; text-decoration: none; }
+  .toc a:hover { background: rgba(59, 130, 246, 0.12); }
+  .manual-content section { margin-bottom: 48px; }
+  .manual-content h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; margin-bottom: 12px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+  .manual-content h3 { color: var(--text); font-size: 16px; text-transform: none; letter-spacing: 0; margin: 18px 0 8px; }
+  .manual-content p, .manual-content li { line-height: 1.6; color: var(--text); }
+  .manual-content code { background: var(--elevated); color: var(--primary); padding: 2px 6px; border-radius: 3px; font-size: 12px; font-family: 'JetBrains Mono', 'Menlo', monospace; }
+  .anchor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 12px 0; }
+  .anchor { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 10px; }
+  .anchor .label { color: var(--text-2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .anchor .value { font-weight: 600; font-size: 14px; margin-top: 3px; }
+  .anchor .src { color: var(--text-3); font-size: 10px; margin-top: 2px; }
+  .archetype-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+  .archetype-card h3 { margin-top: 0; }
+  .archetype-card .meta { color: var(--text-2); font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1 style="font-size:22px">📖 ATLAS — Student Manual</h1>
+  <div class="meta">Universal mechanics + role explainer. Bookmark this; it's always available alongside your team briefing. <a href="./index.html">← Plan B portal</a></div>
+</header>
+
+<main>
+<div class="manual-layout">
+  <nav class="toc">
+    <h3>Roles</h3>
+    <a href="#role-brazilian-producer">Brazilian Producer</a>
+    <a href="#role-ethiopian-producer">Ethiopian Producer</a>
+    <a href="#role-trading-house-alpha">Trading House Alpha</a>
+    <a href="#role-trading-house-beta">Trading House Beta</a>
+    <a href="#role-roaster-large">Roaster Large</a>
+    <a href="#role-roaster-specialty">Roaster Specialty</a>
+    <a href="#role-shipping-logistics">Shipping &amp; Logistics</a>
+    <a href="#role-retailer-brand">Retailer / Brand</a>
+    <h3>Mechanics</h3>
+    <a href="#m-trading">Trading + VWAP</a>
+    <a href="#m-forwards">Forward contracts</a>
+    <a href="#m-options">Options (calls + puts)</a>
+    <a href="#m-carbon">Carbon caps + offsets</a>
+    <a href="#m-d20">D20 invalidation</a>
+    <a href="#m-events">Event cards</a>
+    <a href="#m-ai">AI Advisor</a>
+    <a href="#m-settlement">Settlement</a>
+    <h3>Scoring</h3>
+    <a href="#s-composite">Composite (40/20/25/15)</a>
+    <a href="#s-pnl">P&amp;L (in-game 40%)</a>
+    <a href="#s-esg">ESG score</a>
+    <a href="#s-peer">Peer evaluation</a>
+    <a href="#s-reflection">Reflection</a>
+    <a href="#s-prepost">Pre/post quiz</a>
+  </nav>
+
+  <div class="manual-content">
+
+  <section id="overview">
+    <h2>How this manual works</h2>
+    <p>This page is universal knowledge — every team can read every section. Your team briefing (linked from the Plan B portal landing) is encrypted and team-specific; <strong>this manual is the opposite: shared mechanics, no secrets</strong>.</p>
+    <p>Use the sticky table of contents on the left to jump between sections. The Roles section explains what each of the 8 archetypes does — including teams you're competing with. Knowing what your counterparties are optimizing for is part of the simulation.</p>
+  </section>
+
+  <section id="roles">
+    <h2>The 8 roles</h2>
+    <p>Eight archetypes × 3 variants = 24 teams in a full session. Each archetype shares supply-chain function and starting cash baseline; variants differ on cultural style, brand identity, and ±$200K cash deltas.</p>
+
+    <div class="archetype-card" id="role-brazilian-producer">
+      <h3>🇧🇷 Brazilian Producer</h3>
+      <div class="meta">Supply-chain function: primary commercial Arabica origin (Santos port). Volume-driven, weather-exposed.</div>
+      <p><strong>Starting cash:</strong> $800K baseline (variants ±$200K). <strong>R1 carbon cap:</strong> 210 tCO₂e (highest of any archetype, reflecting industrial-scale roasting + transport).</p>
+      <p><strong>Goal:</strong> move volume profitably. You sell mostly to Trading Houses; some direct trades with Roaster Large. Your forward book may include FWD-001 (canonical: sell 100 MT to TH-Alpha @ $4,200, deliver R2).</p>
+      <p><strong>Watch:</strong> Santos port disruptions (EVT-008), Cerrado drought (EVT-007), EUDR uncertified surcharge (EVT-010 +$80/MT).</p>
+    </div>
+
+    <div class="archetype-card" id="role-ethiopian-producer">
+      <h3>🇪🇹 Ethiopian Producer</h3>
+      <div class="meta">Supply-chain function: specialty Arabica origin (Djibouti port). Lower volume, cup-quality premium.</div>
+      <p><strong>Starting cash:</strong> $500K baseline. <strong>R1 carbon cap:</strong> 80 tCO₂e (low; small-scale operations).</p>
+      <p><strong>Goal:</strong> defend specialty premium ($5,500+/MT vs commercial $4,409). Your buyers are Specialty Roasters and high-end Trading Houses. Canonical forward FWD-002: sell 50 MT to Specialty Roaster @ $5,400, deliver R3.</p>
+      <p><strong>Watch:</strong> Ethiopian export quota (EVT-013 — government caps exports at 50%), rust outbreak, Suez disruption (your Djibouti route).</p>
+    </div>
+
+    <div class="archetype-card" id="role-trading-house-alpha">
+      <h3>Trading House Alpha</h3>
+      <div class="meta">Supply-chain function: spread-capture intermediary. Buys from producers, sells to roasters.</div>
+      <p><strong>Starting cash:</strong> $1.5M baseline (with $2.5M credit limit, the highest). <strong>R1 carbon cap:</strong> 70 tCO₂e (operational only, not transport).</p>
+      <p><strong>Goal:</strong> margin between origin price and roaster sale price. You're the highest-volume archetype. Multiple legacy forwards on day one.</p>
+      <p><strong>Watch:</strong> price shocks compress your spread; freight surges (EVT-009) hit your CIF margins.</p>
+    </div>
+
+    <div class="archetype-card" id="role-trading-house-beta">
+      <h3>Trading House Beta</h3>
+      <div class="meta">Supply-chain function: Robusta-focused trading. Vietnam origin connections.</div>
+      <p><strong>Starting cash:</strong> $1.5M baseline. <strong>R1 carbon cap:</strong> 85 tCO₂e.</p>
+      <p><strong>Goal:</strong> Robusta blend optimization, Asia-EU origin-to-roaster flow. Your edge is information about Vietnam supply.</p>
+      <p><strong>Watch:</strong> Vietnam typhoon (EVT-023 — Robusta supply -30%), Suez Canal blockage (your HCMC routes).</p>
+    </div>
+
+    <div class="archetype-card" id="role-roaster-large">
+      <h3>Roaster Large</h3>
+      <div class="meta">Supply-chain function: industrial-scale roasting. Stable blend procurement.</div>
+      <p><strong>Starting cash:</strong> $1.2M baseline. <strong>R1 carbon cap:</strong> 175 tCO₂e (high — energy-intensive roasting).</p>
+      <p><strong>Goal:</strong> consistent blend at scale. You buy from Trading Houses primarily. Vertical integration variants (JDE, Nestlé) start with more cash.</p>
+      <p><strong>Watch:</strong> EUDR enforcement (uncertified Brazilian becomes expensive), Conscious Cup viral premium (EVT-005 — certified demand jumps).</p>
+    </div>
+
+    <div class="archetype-card" id="role-roaster-specialty">
+      <h3>Roaster Specialty</h3>
+      <div class="meta">Supply-chain function: direct trade, single-origin focus. Higher margin, smaller volume.</div>
+      <p><strong>Starting cash:</strong> $700K baseline. <strong>R1 carbon cap:</strong> 70 tCO₂e.</p>
+      <p><strong>Goal:</strong> certification-driven premium. Cup of Excellence bonus (EVT-018: +$50K to specialty roasters who buy specialty Arabica from Ethiopian producer that round).</p>
+      <p><strong>Watch:</strong> Verra crash (EVT-015 affects offset choices), Untraceable Offer (EVT-018 ethical dilemma).</p>
+    </div>
+
+    <div class="archetype-card" id="role-shipping-logistics">
+      <h3>Shipping &amp; Logistics</h3>
+      <div class="meta">Supply-chain function: service role. Controls shipping rates + information about all flows.</div>
+      <p><strong>Starting cash:</strong> $1.0M baseline. <strong>R1 carbon cap:</strong> 135 tCO₂e (high — transport emissions).</p>
+      <p><strong>Goal:</strong> margin on freight services + information broker advantage during disruptions.</p>
+      <p><strong>Watch:</strong> Santos strike, Suez Canal block, freight surge — these are <em>your moments</em>. Pricing power is asymmetric.</p>
+    </div>
+
+    <div class="archetype-card" id="role-retailer-brand">
+      <h3>Retailer / Brand</h3>
+      <div class="meta">Supply-chain function: downstream demand. Consumer-facing premium / mass-market.</div>
+      <p><strong>Starting cash:</strong> $2.0M baseline (highest). <strong>R1 carbon cap:</strong> 280 tCO₂e (highest — full Scope 3 footprint).</p>
+      <p><strong>Goal:</strong> shelf availability at target margin. ESG marketing is a double-edged sword (Conscious Cup helps; greenwashing scandal hurts).</p>
+      <p><strong>Watch:</strong> consumer demand shocks (EVT-017 retailer cancellations), institutional buyer surge (EVT-038 in R6).</p>
+    </div>
+  </section>
+
+  <section id="m-trading">
+    <h2>Trading + VWAP</h2>
+    <h3>What can be traded</h3>
+    <p>Three coffee grades + carbon credits:</p>
+    <ul>
+      <li><code>arabica_commercial</code> — baseline $4,409/MT (D001)</li>
+      <li><code>arabica_specialty</code> — baseline $5,500/MT</li>
+      <li><code>standard_robusta</code> — baseline $2,200/MT</li>
+      <li>Carbon offsets (Gold $50, Verra $25, Unverified $10 per tCO₂e)</li>
+    </ul>
+
+    <h3>Lot size + max contract</h3>
+    <p>Every contract must be a multiple of <strong>19.2 MT</strong> (one 20' FCL container — D002). Maximum per contract: 5 lots (96 MT). For options + forwards the same rule applies.</p>
+
+    <h3>VWAP (Volume-Weighted Average Price)</h3>
+    <p>Per round, per grade. Formula: <code>sum(qty × price) / sum(qty)</code>. The displayed market price needs at least 3 trades on that grade in that round to be valid (D015 ≥3-trade minimum). Below that threshold, the system falls back to the baseline (or the event-shocked baseline, see Events).</p>
+
+    <h3>Why 3-trade minimum?</h3>
+    <p>To prevent a single team from setting an artificial market price. With 24 teams trading aggressively, hitting 3 trades per grade is normally easy in any round.</p>
+  </section>
+
+  <section id="m-forwards">
+    <h2>Forward contracts</h2>
+    <p>A forward = "I commit now to buy/sell X MT at Y price for delivery in round Z." Locked-in revenue/cost — you don't get the spot upside but you don't suffer the spot downside either.</p>
+    <h3>Margin requirements</h3>
+    <p>10% initial margin posted at write. 5% maintenance margin checked at end of each round. Mark-to-market: if the spot price moves against you, you may receive a margin call requiring additional cash by next round or face default.</p>
+    <h3>Default penalties</h3>
+    <p>If you fail to deliver on a forward: $25K seller-side reputation penalty + $10K buyer-side. Reputation drops trigger -20% match priority next round (your trade requests get ignored).</p>
+    <h3>Settlement</h3>
+    <p>At the delivery round, a forward auto-converts to a physical trade at the contracted price. If the spot has moved, the writer/holder may have made or lost money relative to the day's market — that's the point of forwards.</p>
+  </section>
+
+  <section id="m-options">
+    <h2>Options (calls + puts)</h2>
+    <p><strong>Call</strong> = right to buy at strike price. <strong>Put</strong> = right to sell at strike price. Both pay a premium up-front (writer collects, holder pays).</p>
+    <h3>At expiry</h3>
+    <p>Intrinsic value computed as:</p>
+    <ul>
+      <li>Call: <code>max(0, VWAP − strike) × qty</code></li>
+      <li>Put: <code>max(0, strike − VWAP) × qty</code></li>
+    </ul>
+    <p>If intrinsic &gt; 0: exercise (writer pays holder the intrinsic value). If intrinsic ≤ 0: lapse (no further cash flow; premium stays with writer).</p>
+    <h3>Strategy hint</h3>
+    <p>Calls are bullish bets; puts are bearish. Selling premium is a yield strategy when you expect prices to stay range-bound. Buying premium is a cheap insurance policy if you expect a big move.</p>
+  </section>
+
+  <section id="m-carbon">
+    <h2>Carbon caps + offsets</h2>
+    <h3>Per-team R1 caps (sum = 1,105 tCO₂e — D006)</h3>
+    <div class="anchor-grid">
+      <div class="anchor"><div class="label">Brazilian Producer</div><div class="value">210 tCO₂e</div></div>
+      <div class="anchor"><div class="label">Ethiopian Producer</div><div class="value">80 tCO₂e</div></div>
+      <div class="anchor"><div class="label">TH Alpha</div><div class="value">70 tCO₂e</div></div>
+      <div class="anchor"><div class="label">TH Beta</div><div class="value">85 tCO₂e</div></div>
+      <div class="anchor"><div class="label">Roaster Large</div><div class="value">175 tCO₂e</div></div>
+      <div class="anchor"><div class="label">Roaster Specialty</div><div class="value">70 tCO₂e</div></div>
+      <div class="anchor"><div class="label">Shipping</div><div class="value">135 tCO₂e</div></div>
+      <div class="anchor"><div class="label">Retailer</div><div class="value">280 tCO₂e</div></div>
+    </div>
+
+    <h3>Cap tightening (D007)</h3>
+    <p>Each subsequent round: 5% compound reduction. R2 cap = R1 × 0.95. R6 cap = R1 × 0.7738 (≈23% total reduction). Plan accordingly — buying offsets late is more expensive.</p>
+
+    <h3>Overshoot penalty</h3>
+    <p>$100/tCO₂e for every tonne over the cap (D006). Can be increased by carbon-event injections (e.g., EVT-006 binding caps, EVT-011 carbon tax +$30/tCO₂e on emissions above 80% of cap).</p>
+
+    <h3>Three offset tiers (D008)</h3>
+    <table>
+      <thead><tr><th>Tier</th><th>Price</th><th>Effective reduction</th><th>ESG impact</th><th>Risk</th></tr></thead>
+      <tbody>
+        <tr><td>Gold</td><td>$50/tCO₂e</td><td>1.0× (full)</td><td>+2 ESG / 10 t</td><td>5% invalidation (d20 ≤1)</td></tr>
+        <tr><td>Verra</td><td>$25/tCO₂e</td><td>0.7× (70%)</td><td>0 ESG impact</td><td>20% invalidation (d20 ≤4)</td></tr>
+        <tr><td>Unverified</td><td>$10/tCO₂e</td><td>0.4× (40%)</td><td>−3 ESG / 10 t</td><td>40% invalidation (d20 ≤8)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Min/max purchase per transaction</h3>
+    <p>5 to 50 tCO₂e per transaction. To buy more than 50 in a round: split into multiple transactions.</p>
+  </section>
+
+  <section id="m-d20">
+    <h2>D20 invalidation</h2>
+    <p>At round close, every offset purchase rolls a 20-sided die (d20) for invalidation. The threshold depends on tier:</p>
+    <ul>
+      <li>Gold: roll 1 invalidates (5% chance)</li>
+      <li>Verra: roll 1-4 invalidates (20% chance)</li>
+      <li>Unverified: roll 1-8 invalidates (40% chance)</li>
+    </ul>
+    <p>If invalidated: the offset's tons drop to zero for net-emissions calculation, but you still <strong>paid for it</strong>. Sunk cost. The cheapest offsets carry the highest expected loss.</p>
+    <p>The roll uses cryptographic randomness (server-side <code>crypto.getRandomValues</code>); the result is deterministic for audit purposes. Disputes are not negotiable.</p>
+  </section>
+
+  <section id="m-events">
+    <h2>Event cards (38 total — D039)</h2>
+    <p>The deck is composed of:</p>
+    <ul>
+      <li><strong>9 mandatory</strong> — auto-injected at round start. Cannot be skipped (facilitator can deactivate but rarely will).</li>
+      <li><strong>8 herald</strong> — auto-embedded in the Herald newspaper. Narrative + foreshadowing.</li>
+      <li><strong>19 optional</strong> — facilitator chooses based on cohort dynamics.</li>
+      <li><strong>2 conditional</strong> — trigger only when behavior thresholds are met (e.g., greenwashing scandal if a team is heavily reliant on Unverified).</li>
+    </ul>
+    <p>Event effects propagate to live engines (D080):</p>
+    <ul>
+      <li><strong>price_shock</strong> — adds % or absolute deltas to baseline VWAP (e.g., EVT-008 Santos Strike +10% Arabica)</li>
+      <li><strong>supply_disruption</strong> — drops origin capacity (e.g., EVT-008 Santos to 25%)</li>
+      <li><strong>carbon_event</strong> — tightens cap or raises penalty (e.g., EVT-016 Carbon Emergency cap -8%)</li>
+      <li><strong>logistics_delay</strong> — adds rounds to delivery (EVT-008 +1 round)</li>
+      <li><strong>regulatory_change</strong> — surcharges at settlement (EVT-010 EUDR +$80/MT)</li>
+    </ul>
+    <p>Watch the round-tab "Active event modifiers" card — it always shows what's currently in force.</p>
+  </section>
+
+  <section id="m-ai">
+    <h2>AI Advisor (MBB &amp; Partners)</h2>
+    <p>An AI advisor is available to every team. Three tiers — cheaper = faster but less strategic:</p>
+    <table>
+      <thead><tr><th>Tier</th><th>Fee/call</th><th>Best for</th></tr></thead>
+      <tbody>
+        <tr><td>Basic (Haiku)</td><td>$5K</td><td>Quick lookups, "what does this term mean?"</td></tr>
+        <tr><td>Standard (Sonnet)</td><td>$10K</td><td>Tactical decisions, "should I exercise this option?"</td></tr>
+        <tr><td>Strategic (Opus)</td><td>$25K</td><td>Round-level strategy, "how should I position for R5 crisis?"</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Crisis surcharge:</strong> ×1.5 in R3-R5 (the volatile rounds). Plan AI usage in R1-R2 and R6 if budget is tight.</p>
+    <p><strong>Rate limits:</strong> 12 calls per team per round, 5 per individual student per round. Coordinate within your team.</p>
+    <p><strong>Cultural counterparty coaching:</strong> the advisor knows your variant's cultural style (Hofstede dimensions) and the counterparty's. Ask "how should I open negotiation with [counterparty]?" and you'll get a coaching answer keyed to their negotiation anchor (price / relationship / risk-sharing / volume commitment).</p>
+  </section>
+
+  <section id="m-settlement">
+    <h2>Settlement</h2>
+    <p>End-of-round process:</p>
+    <ol>
+      <li>All confirmed spot trades for this round settle at the trade price (no MTM)</li>
+      <li>All forwards with <code>deliveryRound = current</code> auto-settle as physical trades</li>
+      <li>Open forwards (later delivery rounds) MTM against current VWAP — margin calls issued if applicable</li>
+      <li>Carbon settlement per team: cap check, offset accounting, d20 invalidation rolls, penalties applied</li>
+      <li>ESG scores updated (carbon performance + offset tier mix)</li>
+      <li>Reputation status recomputed (green / amber / red based on overshoots + defaults)</li>
+      <li>Round results broadcast to dashboards</li>
+    </ol>
+    <p>Settlement runs on the server via BullMQ; typical duration ~30s. If settlement stalls beyond 2 min, facilitator escalates.</p>
+  </section>
+
+  <section id="s-composite">
+    <h2>Composite scoring (40/20/25/15) — D012</h2>
+    <p>Your final grade is computed as:</p>
+    <p style="font-family:'JetBrains Mono',monospace;background:var(--card);padding:12px;border-radius:6px;font-size:13px;">
+      composite = 0.40 × in_game + 0.20 × peer + 0.25 × reflection + 0.15 × pre_post_growth
+    </p>
+    <p><strong>Critical insight:</strong> 60% of your grade is learning evidence (peer + reflection + pre/post), not in-game performance. A team can lose at trading and still place in the top tier on composite if their reflection + peer eval + knowledge growth show genuine learning.</p>
+    <p>Letter grade thresholds: A ≥ 90, B ≥ 75, C ≥ 60, D ≥ 50, F &lt; 50.</p>
+  </section>
+
+  <section id="s-pnl">
+    <h2>In-game P&amp;L (40%)</h2>
+    <p>Role-normalized percentile, formula: <code>((N − rank) / (N − 1)) × 100</code> where N = total teams. Top team = 100; last team = 0; symmetric distribution.</p>
+    <p>Sub-components inside the in-game score:</p>
+    <ul>
+      <li>50% Financial (final cash + inventory MTM minus starting cash)</li>
+      <li>30% ESG (carbon performance + offset tier mix)</li>
+      <li>20% Operational (deal volume, no defaults, on-time settlement)</li>
+    </ul>
+    <p><strong>Why role-normalized?</strong> Your starting cash + cap differ by archetype. Comparing absolute P&amp;L across roles would be unfair. The percentile rank is computed within your archetype-aware percentile band.</p>
+  </section>
+
+  <section id="s-esg">
+    <h2>ESG score</h2>
+    <p>Composite of carbon performance + offset tier mix, clamped 0-100:</p>
+    <p style="font-family:'JetBrains Mono',monospace;background:var(--card);padding:12px;border-radius:6px;font-size:13px;">
+      esgScore = baseScore + tierDelta<br>
+      baseScore = (1 − totalNet/totalCap) × 100<br>
+      tierDelta = Σ (tons_tier / 10) × tierEsgImpact
+    </p>
+    <p>tierEsgImpact: Gold +2, Verra 0, Unverified -3 per 10 tCO₂e purchased. So a team that buys 50 tCO₂e of Gold gets +10 ESG points; same 50 tCO₂e of Unverified gets -15.</p>
+    <p>Reputation is a separate signal: green / amber / red, derived from overshoots + forward defaults.</p>
+  </section>
+
+  <section id="s-peer">
+    <h2>Peer evaluation (20%)</h2>
+    <p>Two parts:</p>
+    <ul>
+      <li><strong>Within-team (W1-W10):</strong> rate your own teammates 1-5 on Communication, Teamwork, Coordination, Support, Conflict Resolution, Motivation, Strategy, Digital Skills, Representation, Overall. Aggregated via trimmed mean (drop top + bottom if ≥4 reviewers) to discourage gaming.</li>
+      <li><strong>Between-team (B1-B5):</strong> rate other teams you traded with on Fair Dealing, Clarity, Creativity, Reliability, Trust.</li>
+    </ul>
+    <p>Open-ended comments matter. Anti-gaming: facilitators look for unusually high or low scores given by a single rater.</p>
+  </section>
+
+  <section id="s-reflection">
+    <h2>Reflection (25%)</h2>
+    <p>5 prompts (R1-R5), choose at least 3 to address. Word count: 200-300 per prompt. Scored on the SOLO 5-dimension rubric (D058):</p>
+    <ul>
+      <li><strong>Depth</strong> — surface vs deep understanding</li>
+      <li><strong>Evidence</strong> — citing specific simulation moments + data</li>
+      <li><strong>Self-awareness</strong> — recognizing your decisions + biases</li>
+      <li><strong>Transfer</strong> — connecting to real-world or career context</li>
+      <li><strong>Clarity</strong> — coherent expression</li>
+    </ul>
+    <p>Late penalty: -5 per 24h, max -15. Double-marking: 20% of submissions are graded by 2 facilitators with calibration tolerance ±10 points.</p>
+  </section>
+
+  <section id="s-prepost">
+    <h2>Pre/post knowledge (15%)</h2>
+    <p>Same 20-MCQ quiz at start (pre) and end (post). 5 domains: Trading, Negotiation, ESG, Supply Chain, Digital. 30-min time limit.</p>
+    <p>Score formula:</p>
+    <p style="font-family:'JetBrains Mono',monospace;background:var(--card);padding:12px;border-radius:6px;font-size:13px;">
+      gain = (post − pre) / max(1, 100 − pre)<br>
+      prePostScore = gain × 85 + post × 0.15
+    </p>
+    <p>So 85% of this component is your <em>growth</em>, 15% is your final knowledge level. A team that started at 30% and ended at 70% scores higher than one that started at 80% and ended at 90% — learning is what we measure.</p>
+    <p><strong>Sandbagging detection:</strong> if pre &lt; 15%, time &lt; 5 min, post &gt; 70% → flagged for review. Don't try to fail the pre-quiz.</p>
+  </section>
+
+  </div>
+</div>
+</main>
+
+<footer>
+  ATLAS Student Manual · ALWAYS open alongside your team briefing ·
+  <a href="./index.html">← Plan B portal</a>
+</footer>
+</body>
+</html>
