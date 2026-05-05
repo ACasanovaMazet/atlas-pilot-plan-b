@@ -1,176 +1,855 @@
-/* ATLAS Plan B Portal — shared static styles
- * Design tokens lifted from platform/web/tailwind.config.ts (D068 design direction).
- * Single CSS file shared across landing + 24 team pages + facilitator page.
- */
+/* ============================================================
+   ATLAS Plan B Portal — Stylesheet
+   Redesigned 2026-05-05 — Swiss Modernism 2.0 + finance editorial.
+   Single CSS file: shared tokens, components, archetype + slug layers, print.
+   ============================================================ */
+
+
+/* -------- 1. Tokens ----------------------------------------- */
 
 :root {
-  --bg: #0A0E1A;
-  --card: #111827;
-  --elevated: #1E293B;
-  --border: rgba(59, 130, 246, 0.18);
-  --border-hover: rgba(59, 130, 246, 0.4);
-  --text: #F1F5F9;
-  --text-2: #94A3B8;
-  --text-3: #475569;
-  --primary: #3B82F6;
-  --primary-darker: #1D4ED8;
-  --green: #22C55E;
-  --amber: #F59E0B;
-  --red: #EF4444;
-  --mbb-navy: #1E3A5F;
-  --mbb-gold: #C5A572;
+  /* Surface */
+  --bg:        #0A0E1A;
+  --surface:   #111827;
+  --raised:   #1E293B;
+  --hairline:  rgba(148, 163, 184, 0.14);
+  --hairline-strong: rgba(148, 163, 184, 0.28);
+
+  /* Ink */
+  --ink:       #F1F5F9;
+  --ink-2:     #94A3B8;
+  --ink-3:     #64748B;
+  --ink-4:     #475569;
+
+  /* Functional */
+  --link:      #60A5FA;
+  --link-h:    #93C5FD;
+  --gold:      #C5A572;
+  --green:     #22C55E;
+  --amber:     #F59E0B;
+  --red:       #EF4444;
+
+  /* Brand (overridden per team via inline style="--brand: <hex>") */
+  --brand:     #3B82F6;
+
+  /* Spacing rhythm — 4 px base */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+
+  /* Type scale */
+  --fs-xs: 11px;
+  --fs-sm: 12px;
+  --fs-md: 14px;
+  --fs-lg: 16px;
+  --fs-xl: 20px;
+  --fs-2xl: 24px;
+  --fs-3xl: 32px;
+  --fs-4xl: 40px;
+
+  /* Radius */
+  --r-1:  4px;
+  --r-2:  8px;
+  --r-3: 12px;
+  --r-4: 16px;
+
+  /* Motion */
+  --t-fast:  150ms ease-out;
+  --t-med:   220ms ease-out;
 }
 
-* { box-sizing: border-box; }
+
+/* -------- 2. Reset + base ----------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  font: 14px/1.5 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg);
-  color: var(--text);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: var(--fs-md);
+  font-feature-settings: 'cv11', 'ss01', 'tnum';
+  line-height: 1.55;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3 { color: var(--text); margin: 0; }
-h1 { font-family: 'Playfair Display', 'Times New Roman', serif; font-size: 32px; font-weight: 600; line-height: 1.2; }
-h2 { font-size: 20px; font-weight: 600; }
-h3 { font-size: 16px; font-weight: 500; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.08em; }
+::selection { background: rgba(96, 165, 250, 0.32); color: var(--ink); }
 
-a { color: var(--primary); text-decoration: none; }
-a:hover { color: #60A5FA; }
+img, svg { display: block; max-width: 100%; }
 
-/* Glass-morphism cards (D068 visual recipe) */
-.card {
-  background: rgba(15, 22, 41, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  transition: border-color 200ms, transform 200ms;
+
+/* -------- 3. Typography ------------------------------------- */
+
+h1, h2, h3, h4 { color: var(--ink); margin: 0; font-weight: 600; line-height: 1.2; }
+
+h1 {
+  font-family: 'Playfair Display', 'Times New Roman', serif;
+  font-size: var(--fs-3xl);
+  letter-spacing: -0.005em;
 }
-.card:hover { border-color: var(--border-hover); }
 
-/* Layout */
-header {
-  padding: 24px 32px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(10, 14, 26, 0.8);
-  backdrop-filter: blur(8px);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-header .meta { color: var(--text-2); font-size: 12px; }
-main { padding: 24px 32px 64px; max-width: 1400px; margin: 0 auto; }
-footer { padding: 24px 32px; border-top: 1px solid var(--border); color: var(--text-2); font-size: 12px; text-align: center; }
+h2 { font-size: var(--fs-xl); letter-spacing: -0.005em; }
+h3 { font-size: var(--fs-md); color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+h4 { font-size: var(--fs-md); }
 
-/* Landing — team grid */
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
-  margin-top: 24px;
+p { margin: 0 0 var(--s-3); max-width: 65ch; }
+p:last-child { margin-bottom: 0; }
+
+strong { font-weight: 600; color: var(--ink); }
+em     { font-style: italic; color: var(--ink); }
+
+code, .mono {
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  font-feature-settings: 'tnum', 'zero';
 }
-.team-card {
-  background: rgba(15, 22, 41, 0.6);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+
+code {
+  color: var(--ink-2);
+  background: rgba(148, 163, 184, 0.08);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+a {
+  color: var(--link);
   text-decoration: none;
-  color: var(--text);
-  transition: border-color 200ms, transform 200ms;
+  border-bottom: 1px solid transparent;
+  transition: color var(--t-fast), border-color var(--t-fast);
 }
-.team-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-.team-card .flag { font-size: 22px; }
-.team-card .company { font-weight: 600; font-size: 15px; line-height: 1.3; }
-.team-card .archetype { color: var(--text-2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
-.team-card .city { color: var(--text-3); font-size: 11px; }
-.team-card .swatch { display: inline-block; width: 8px; height: 8px; border-radius: 999px; margin-right: 6px; vertical-align: middle; }
+a:hover { color: var(--link-h); border-bottom-color: currentColor; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
 
-.archetype-section { margin-top: 28px; }
-.archetype-section h2 { color: var(--text-2); font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
 
-/* Facilitator strip */
-.fac-strip {
-  background: linear-gradient(135deg, rgba(30, 58, 95, 0.5), rgba(197, 165, 114, 0.15));
-  border: 1px solid var(--mbb-gold);
-  border-radius: 16px;
-  padding: 24px;
-  margin: 24px 0;
+/* -------- 4. Layout primitives ------------------------------ */
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--s-6);
+}
+
+@media (max-width: 720px) {
+  .container { padding: 0 var(--s-4); }
+}
+
+.stack > * + * { margin-top: var(--s-4); }
+.stack-lg > * + * { margin-top: var(--s-6); }
+
+.row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 24px;
+  gap: var(--s-3);
+  flex-wrap: wrap;
 }
-.fac-strip a {
-  background: var(--mbb-gold);
-  color: #1A1A1A;
-  font-weight: 600;
-  padding: 10px 20px;
-  border-radius: 8px;
-  white-space: nowrap;
-}
-.fac-strip a:hover { filter: brightness(1.1); color: #1A1A1A; }
 
-/* Team page — stat blocks */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
-  margin: 16px 0 24px;
+
+/* -------- 5. Header + footer -------------------------------- */
+
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(10, 14, 26, 0.78);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--hairline);
 }
-.stat {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  height: 56px;
 }
-.stat .label { color: var(--text-2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
-.stat .value { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; margin-top: 4px; }
+
+.site-header .wordmark {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  border: 0;
+}
+.site-header .wordmark:hover { color: var(--ink); border: 0; }
+.site-header .subtitle {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-left: 1px solid var(--hairline);
+  padding-left: var(--s-3);
+  margin-left: var(--s-1);
+}
+
+.site-header .nav-links {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  font-size: var(--fs-sm);
+}
+
+.site-header .nav-links a {
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.site-header .nav-links a:hover { color: var(--ink); }
+
+.site-footer {
+  border-top: 1px solid var(--hairline);
+  margin-top: var(--s-8);
+  padding: var(--s-5) 0;
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+.site-footer .container { display: flex; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; }
+
+
+/* -------- 6. ISO country chip ------------------------------- */
+
+.iso-chip {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  background: var(--raised);
+  border: 1px solid var(--hairline-strong);
+  padding: 2px 6px;
+  border-radius: 3px;
+  min-width: 26px;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+
+/* -------- 7. Brand swatch ---------------------------------- */
+
+.swatch {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--brand);
+  vertical-align: middle;
+  margin-right: var(--s-2);
+}
+.swatch-lg { width: 12px; height: 12px; }
+
+
+/* -------- 8. Cards (glass) ---------------------------------- */
+
+.card {
+  background: rgba(17, 24, 39, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-3);
+  padding: var(--s-5);
+  transition: border-color var(--t-fast);
+}
+.card:hover { border-color: var(--hairline-strong); }
+
+
+/* -------- 9. Callouts -------------------------------------- */
 
 .callout {
-  border-left: 3px solid var(--primary);
-  padding: 8px 12px;
-  background: rgba(59, 130, 246, 0.08);
-  border-radius: 4px;
-  margin: 12px 0;
-  font-size: 13px;
+  border-left: 2px solid var(--brand);
+  padding: var(--s-3) var(--s-4);
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: 0 var(--r-1) var(--r-1) 0;
+  font-size: var(--fs-md);
 }
-.callout.warning { border-left-color: var(--amber); background: rgba(245, 158, 11, 0.08); }
-.callout.success { border-left-color: var(--green); background: rgba(34, 197, 94, 0.08); }
+.callout--muted { border-left-color: var(--ink-4); background: rgba(148, 163, 184, 0.04); color: var(--ink-2); }
+.callout--warn  { border-left-color: var(--amber); background: rgba(245, 158, 11, 0.05); }
+.callout--ok    { border-left-color: var(--green); background: rgba(34, 197, 94, 0.05); }
 
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
-th { color: var(--text-2); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* -------- 10. Tables --------------------------------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-md);
+  font-variant-numeric: tabular-nums;
+}
+thead th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--s-2) var(--s-3);
+  border-bottom: 1px solid var(--hairline-strong);
+}
+tbody td {
+  padding: var(--s-3);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink);
+  vertical-align: top;
+}
+tbody tr:last-child td { border-bottom: 0; }
+
+
+/* -------- 11. Pills ----------------------------------------- */
 
 .pill {
   display: inline-block;
-  padding: 2px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  padding: 1px 7px;
   border-radius: 999px;
-  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.pill.amber { background: rgba(245, 158, 11, 0.14); color: var(--amber); }
+.pill.red   { background: rgba(239, 68, 68, 0.14); color: var(--red); }
+.pill.green { background: rgba(34, 197, 94, 0.14); color: var(--green); }
+.pill.muted { background: rgba(148, 163, 184, 0.14); color: var(--ink-2); }
+.pill.brand { background: color-mix(in srgb, var(--brand) 18%, transparent); color: var(--brand); }
+
+
+/* -------- 12. Buttons --------------------------------------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  padding: 9px 14px;
+  border-radius: var(--r-2);
+  border: 1px solid var(--hairline-strong);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast);
+}
+.button:hover { border-color: var(--ink-3); background: rgba(241, 245, 249, 0.04); }
+.button-primary {
+  border-color: transparent;
+  background: var(--gold);
+  color: #1A1A1A;
+  font-weight: 600;
+}
+.button-primary:hover { filter: brightness(1.08); color: #1A1A1A; background: var(--gold); }
+
+
+/* -------- 13. Lucide icon defaults -------------------------- */
+
+.icon {
+  width: 16px; height: 16px;
+  stroke: currentColor; fill: none;
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.icon-lg { width: 20px; height: 20px; }
+
+
+/* ============================================================
+   PAGE: Landing
+   ============================================================ */
+
+.landing-hero {
+  padding: var(--s-8) 0 var(--s-6);
+  border-bottom: 1px solid var(--hairline);
+}
+.landing-hero h1 {
+  font-size: var(--fs-4xl);
+  margin-bottom: var(--s-3);
+}
+.landing-hero .lede {
+  font-size: var(--fs-lg);
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+
+.facilitator-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+  margin: var(--s-7) 0;
+  padding: var(--s-5);
+  border: 1px solid var(--gold);
+  border-radius: var(--r-3);
+  background: linear-gradient(135deg, rgba(30, 58, 95, 0.18), rgba(197, 165, 114, 0.06));
+}
+.facilitator-strip h2 { font-family: 'Playfair Display', serif; font-size: var(--fs-xl); }
+.facilitator-strip p  { color: var(--ink-2); font-size: var(--fs-sm); margin: 4px 0 0; }
+.facilitator-strip .actions { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+
+.archetype-cluster {
+  margin-top: var(--s-7);
+}
+.archetype-cluster-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+.archetype-cluster-head h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+}
+.archetype-cluster-head .summary {
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  flex: 1;
+}
+.archetype-cluster-head .count {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--s-3);
+}
+.team-card {
+  display: block;
+  padding: var(--s-4);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-2);
+  background: rgba(17, 24, 39, 0.45);
+  color: var(--ink);
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+.team-card:hover {
+  border-color: var(--brand-card, var(--ink-3));
+  background: rgba(17, 24, 39, 0.7);
+  color: var(--ink);
+  border-bottom-color: var(--brand-card, var(--ink-3));
+}
+.team-card .row1 { display: flex; align-items: center; gap: var(--s-2); margin-bottom: var(--s-2); }
+.team-card .swatch-lg { background: var(--brand-card, var(--brand)); }
+.team-card .name {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.25;
+}
+.team-card .meta {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  margin-top: var(--s-2);
+  letter-spacing: 0.02em;
+}
+
+
+/* ============================================================
+   PAGE: Team briefing
+   ============================================================ */
+
+.team-hero {
+  padding: var(--s-7) 0 var(--s-5);
+  border-bottom: 1px solid var(--hairline);
+  position: relative;
+}
+.team-hero::before {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand) 0%, transparent 36%);
+}
+.team-hero .archetype-line {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--s-3);
+}
+.team-hero h1 {
+  font-size: var(--fs-4xl);
+  margin-bottom: var(--s-2);
+}
+.team-hero .city-line {
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
+  margin-bottom: var(--s-4);
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.team-hero .mission {
+  font-size: var(--fs-lg);
+  color: var(--ink);
+  max-width: 60ch;
+  line-height: 1.5;
+}
+
+.section { padding: var(--s-6) 0; border-bottom: 1px solid var(--hairline); }
+.section:last-of-type { border-bottom: 0; }
+.section h2 {
+  font-size: var(--fs-md);
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--s-4);
   font-weight: 500;
 }
-.pill.green { background: rgba(34, 197, 94, 0.18); color: var(--green); }
-.pill.amber { background: rgba(245, 158, 11, 0.18); color: var(--amber); }
-.pill.red { background: rgba(239, 68, 68, 0.18); color: var(--red); }
-.pill.muted { background: rgba(148, 163, 184, 0.18); color: var(--text-2); }
 
-/* Mobile */
-@media (max-width: 720px) {
-  header, main, footer { padding-left: 16px; padding-right: 16px; }
-  .team-grid { grid-template-columns: 1fr; }
-  .fac-strip { flex-direction: column; align-items: flex-start; }
-  h1 { font-size: 24px; }
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-4);
+  margin-bottom: var(--s-2);
+}
+@media (max-width: 600px) {
+  .stats-row { grid-template-columns: 1fr; }
+}
+.stat-block {
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-2);
+}
+.stat-block .label {
+  font-size: var(--fs-xs);
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--s-2);
+}
+.stat-block .value {
+  font-size: var(--fs-md);
+  color: var(--ink);
+  line-height: 1.4;
 }
 
-/* Print */
+.success-list { padding-left: var(--s-5); margin: 0; }
+.success-list li { margin-bottom: var(--s-2); color: var(--ink); }
+
+.reference-card {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--s-3);
+  font-size: var(--fs-sm);
+}
+.reference-card dt { color: var(--ink-2); }
+.reference-card dd { margin: 0; color: var(--ink); }
+@media (max-width: 600px) { .reference-card { grid-template-columns: 1fr; } .reference-card dt { color: var(--ink-3); margin-top: var(--s-2); } }
+
+
+/* ============================================================
+   PAGE: Manual
+   ============================================================ */
+
+.manual-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--s-7);
+  padding: var(--s-6) 0;
+}
+@media (max-width: 900px) { .manual-layout { grid-template-columns: 1fr; gap: var(--s-4); } }
+
+.toc {
+  position: sticky;
+  top: 80px;
+  align-self: start;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding: var(--s-3);
+  font-size: var(--fs-sm);
+  border-left: 1px solid var(--hairline);
+}
+@media (max-width: 900px) {
+  .toc { position: static; max-height: none; border-left: 0; border-bottom: 1px solid var(--hairline); padding-bottom: var(--s-4); }
+}
+.toc h3 {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: var(--s-4) 0 var(--s-1);
+}
+.toc h3:first-child { margin-top: 0; }
+.toc a {
+  display: block;
+  color: var(--ink-2);
+  padding: 4px 0 4px var(--s-3);
+  border-left: 1px solid transparent;
+  border-bottom: 0;
+}
+.toc a:hover { color: var(--ink); border-left-color: var(--ink-3); border-bottom: 0; }
+.toc a:focus-visible { color: var(--ink); border-left-color: var(--link); }
+
+.manual-content { max-width: 70ch; }
+.manual-content section + section { margin-top: var(--s-7); }
+.manual-content section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--ink);
+  margin-bottom: var(--s-3);
+  padding-bottom: var(--s-2);
+  border-bottom: 1px solid var(--hairline);
+}
+.manual-content h3 {
+  font-size: var(--fs-md);
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  margin: var(--s-5) 0 var(--s-2);
+}
+.manual-content p,
+.manual-content li { line-height: 1.65; color: var(--ink); }
+
+.archetype-summary {
+  padding: var(--s-4);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-2);
+  background: var(--surface);
+  margin-bottom: var(--s-3);
+}
+.archetype-summary h3 {
+  margin: 0 0 var(--s-1);
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+.archetype-summary .scope {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  margin-bottom: var(--s-2);
+}
+.archetype-summary p { margin: var(--s-2) 0 0; font-size: var(--fs-sm); }
+
+.formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--fs-sm);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-1);
+  padding: var(--s-3);
+  margin: var(--s-3) 0;
+  white-space: pre-wrap;
+}
+
+
+/* ============================================================
+   ARCHETYPE LAYER (8) — cultural typography mood
+   ============================================================ */
+
+/* Producers — taller line-height, slight serif accent on display italics */
+body[data-archetype="brazilian-producer"] .team-hero h1,
+body[data-archetype="ethiopian-producer"] .team-hero h1 {
+  letter-spacing: 0;
+}
+body[data-archetype="brazilian-producer"] .manual-content p,
+body[data-archetype="ethiopian-producer"] .manual-content p { line-height: 1.7; }
+
+/* Trading houses — Swiss precision: tight tracking, monospace numerics */
+body[data-archetype="trading-house-alpha"] .team-hero h1,
+body[data-archetype="trading-house-beta"] .team-hero h1 {
+  letter-spacing: -0.012em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+body[data-archetype="trading-house-alpha"] .archetype-line,
+body[data-archetype="trading-house-beta"] .archetype-line {
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: none;
+  letter-spacing: 0;
+}
+body[data-archetype="trading-house-alpha"] .stats-row,
+body[data-archetype="trading-house-beta"] .stats-row { gap: var(--s-3); }
+
+/* Roasters Large — confident FMCG */
+body[data-archetype="roaster-large"] .team-hero h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Roasters Specialty — editorial, gallery-catalogue feel */
+body[data-archetype="roaster-specialty"] .team-hero h1 {
+  letter-spacing: 0.01em;
+}
+body[data-archetype="roaster-specialty"] .section h2 {
+  letter-spacing: 0.14em;
+}
+
+/* Shipping & Logistics — maritime, monospace dominant */
+body[data-archetype="shipping-logistics"] .team-hero::before {
+  background: repeating-linear-gradient(90deg, var(--brand) 0 8%, transparent 8% 12%);
+}
+body[data-archetype="shipping-logistics"] .archetype-line {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Retailer / Brand — consumer-confident, slightly larger display */
+body[data-archetype="retailer-brand"] .team-hero h1 {
+  font-size: 44px;
+  letter-spacing: -0.01em;
+}
+
+
+/* ============================================================
+   PER-SLUG LAYER (24) — fine-tuning. Each slug sets its
+   --brand-card hover hint and any unique flourish.
+   ============================================================ */
+
+/* Producers — Brazilian (3) */
+body[data-slug="brazilian_producer_canonical"] { --brand-card: #22C55E; }
+body[data-slug="daterra_estate"]               { --brand-card: #15803D; }
+body[data-slug="daterra_estate"] .team-hero h1 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600; }
+body[data-slug="cocapec_paulista"]             { --brand-card: #84CC16; }
+body[data-slug="cocapec_paulista"] .manual-content p,
+body[data-slug="cocapec_paulista"] .team-hero .mission { font-size: 17px; }
+
+/* Producers — Ethiopian (3) */
+body[data-slug="ethiopian_producer_canonical"] { --brand-card: #F59E0B; }
+body[data-slug="ethiopian_producer_canonical"] .team-hero::before {
+  background: linear-gradient(90deg, #F59E0B 0 33%, #B45309 33% 66%, #78350F 66%);
+  height: 3px;
+}
+body[data-slug="sidamo_lekempti"]              { --brand-card: #D97706; }
+body[data-slug="harrar_dryland"]               { --brand-card: #B45309; }
+body[data-slug="harrar_dryland"] .team-hero    { padding-top: var(--s-6); }
+body[data-slug="harrar_dryland"] .team-hero::before { width: 36%; }
+
+/* Trading Houses Alpha (3) */
+body[data-slug="trading_house_alpha_canonical"] { --brand-card: #3B82F6; }
+body[data-slug="ecom_alpha"]                    { --brand-card: #1D4ED8; }
+body[data-slug="ecom_alpha"] .team-hero h1::after {
+  content: ''; display: block; width: 32px; height: 1px;
+  background: var(--gold); margin-top: var(--s-3);
+}
+body[data-slug="dreyfus_alpha"]                 { --brand-card: #1E40AF; }
+body[data-slug="dreyfus_alpha"] .team-hero .archetype-line::after {
+  content: '· softs · grains · sugar';
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Trading Houses Beta (3) */
+body[data-slug="trading_house_beta_canonical"]  { --brand-card: #06B6D4; }
+body[data-slug="sucafina_beta"]                 { --brand-card: #0891B2; }
+body[data-slug="sucafina_beta"] .team-hero::before {
+  background: linear-gradient(180deg, var(--brand) 0%, var(--brand) 50%, transparent 50%, transparent 100%);
+  height: 4px;
+  background-size: 100% 2px;
+  background-repeat: repeat-y;
+  background-image: linear-gradient(90deg, var(--brand) 0%, var(--brand) 36%, transparent 36%);
+}
+body[data-slug="mercon_beta"]                   { --brand-card: #155E75; }
+body[data-slug="mercon_beta"] .team-hero::before { opacity: 0.5; }
+
+/* Roasters Large (3) */
+body[data-slug="roaster_large_canonical"]       { --brand-card: #EF4444; }
+body[data-slug="jde_large"]                     { --brand-card: #DC2626; }
+body[data-slug="jde_large"] .team-hero .city-line::after {
+  content: 'CCH:NL · listed';
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  border-left: 1px solid var(--hairline);
+  padding-left: var(--s-3);
+}
+body[data-slug="nestle_large"]                  { --brand-card: #B91C1C; }
+body[data-slug="nestle_large"] .team-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* Roasters Specialty (3) */
+body[data-slug="roaster_specialty_canonical"]   { --brand-card: #EC4899; }
+body[data-slug="intelligentsia_spec"]           { --brand-card: #DB2777; }
+body[data-slug="intelligentsia_spec"] .team-hero .mission::before {
+  content: '“';
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: var(--brand);
+  vertical-align: -8px;
+  margin-right: 4px;
+}
+body[data-slug="illy_italian"]                  { --brand-card: #BE185D; }
+body[data-slug="illy_italian"] .team-hero h1 em,
+body[data-slug="illy_italian"] .archetype-line em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+/* Shipping & Logistics (3) */
+body[data-slug="shipping_logistics_canonical"]  { --brand-card: #8B5CF6; }
+body[data-slug="msc_shipping"]                  { --brand-card: #7C3AED; }
+body[data-slug="kuehne_logistics"]              { --brand-card: #6D28D9; }
+body[data-slug="kuehne_logistics"] .team-hero::before { opacity: 0.5; }
+
+/* Retailer / Brand (3) */
+body[data-slug="retailer_brand_canonical"]      { --brand-card: #F97316; }
+body[data-slug="starbucks_retail"]              { --brand-card: #EA580C; }
+body[data-slug="starbucks_retail"] .team-hero::before {
+  background: linear-gradient(90deg, #EA580C 0%, #F97316 50%, transparent 90%);
+  height: 3px;
+}
+body[data-slug="costa_retail"]                  { --brand-card: #C2410C; }
+body[data-slug="costa_retail"] .section h2 {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+}
+
+
+/* ============================================================
+   FOCUS + REDUCED MOTION
+   ============================================================ */
+
+:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+
 @media print {
-  body { background: white; color: black; }
-  .card, .team-card, .fac-strip, .stat { background: white !important; border: 1px solid #999 !important; }
-  header, footer { display: none; }
-  .pill { border: 1px solid #999; background: white !important; color: black !important; }
+  body { background: #fff; color: #111; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .site-header, .site-footer, .toc, .nav-links, .button { display: none !important; }
+  .container, .manual-layout, .manual-content { max-width: 100%; padding: 0; gap: 0; }
+  .manual-content { max-width: 100%; }
+  .card, .stat-block, .archetype-summary { background: #fff; border: 1px solid #ccc; }
+  .team-hero { border-bottom: 1px solid #888; padding-top: 0; }
+  .team-hero h1, h1, h2, h3, h4 { color: #111; }
+  .team-hero::before { display: none; }
+  .iso-chip { background: #fff; border: 1px solid #888; color: #111; }
+  .swatch { display: inline-block; }
+  .pill { background: #fff !important; border: 1px solid #888 !important; color: #111 !important; }
+  a { color: #111; border-bottom-color: #888; }
+  a[href^="http"]::after { content: ' (' attr(href) ')'; font-size: 10px; color: #555; }
+  .formula, code { background: #f5f5f5; color: #111; }
+  table thead th, table tbody td { color: #111; border-color: #999; }
 }

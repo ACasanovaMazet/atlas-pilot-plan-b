@@ -1,223 +1,353 @@
+<!-- ATLAS Plan B Portal · Landing · Redesigned 2026-05-05 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ATLAS — Pilot Plan B Portal</title>
-<meta name="description" content="Static fallback portal for the ATLAS commodity trading simulation. Used only if the live platform is unreachable. Requires a per-team password." />
+<title>ATLAS — Plan B Portal</title>
+<meta name="description" content="Static encrypted fallback for the ATLAS commodity trading simulation. Used only if the live platform is unreachable. Each team page requires a unique password." />
 <meta name="robots" content="noindex, nofollow" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
-<header>
-  <h1>ATLAS — Plan B Portal</h1>
-  <div class="meta">Encrypted static fallback for the live simulation. Use only if <a href="https://capstone-simulation-orchestrator.vercel.app/" target="_blank" rel="noopener">capstone-simulation-orchestrator.vercel.app</a> is unreachable.</div>
+
+<header class="site-header">
+  <div class="container site-header-inner">
+    <a href="./index.html" class="wordmark">ATLAS</a>
+    <span class="subtitle">Plan B Portal</span>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="./manual.html">Student Manual</a>
+      <a href="https://capstone-simulation-orchestrator.vercel.app/" target="_blank" rel="noopener">Live Platform</a>
+    </nav>
+  </div>
 </header>
 
-<main>
-  <div class="callout">
-    Each team page below is encrypted with a unique password. Your facilitator distributes your team's password on a printed card. Without the password, the page shows only an unlock prompt — no briefing data is exposed.
-  </div>
+<main class="container">
 
-  <div class="fac-strip">
+  <section class="landing-hero">
+    <h1>Plan B Portal</h1>
+    <p class="lede">
+      Encrypted static fallback for the ATLAS commodity trading simulation. Use only if the live platform is unreachable on pilot day. Each team page is encrypted with a unique password — without it, the page exposes nothing beyond the unlock prompt.
+    </p>
+  </section>
+
+  <!-- Facilitator -->
+  <section class="facilitator-strip" aria-labelledby="fac">
     <div>
-      <h2 style="margin-bottom:6px">Facilitator</h2>
-      <div class="meta">Offline calculator with full simulation mirror — VWAP, P&amp;L, carbon, ESG, options, composite scoring. Single password.</div>
+      <h2 id="fac">Facilitator</h2>
+      <p>Offline calculator with full simulation mirror — VWAP, P&amp;L, carbon, ESG, options, composite scoring. Single password.</p>
     </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <a href="./manual.html" style="background:var(--primary);color:white;padding:10px 18px;border-radius:8px;font-weight:500;text-decoration:none">📖 Student Manual</a>
-      <a href="./facilitator.html">Open Facilitator Calculator →</a>
+    <div class="actions">
+      <a class="button" href="./manual.html">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 1 4 17.5z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20"/></svg>
+        Student Manual
+      </a>
+      <a class="button button-primary" href="./facilitator.html">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Open facilitator calculator
+      </a>
     </div>
-  </div>
+  </section>
 
-  <h2 style="margin-top:32px">Student Team Briefings (24 variants × 8 archetypes)</h2>
+  <!-- Team grid: 24 variants in 8 archetype clusters -->
+  <section aria-labelledby="teams">
+    <h2 id="teams" style="font-family: 'Playfair Display', serif; font-size: var(--fs-2xl); margin-bottom: var(--s-2);">Student team briefings</h2>
+    <p style="color: var(--ink-2); font-size: var(--fs-sm); max-width: 65ch;">
+      24 fictional companies across 8 supply-chain archetypes. Pick your team's card, paste the password from your printed briefing, and your mission renders below the lock.
+    </p>
 
-  <!-- Each archetype section is a fragment substituted by the build script -->
-  
-    <div class="archetype-section">
-      <h2>Brazilian Producer — 3 variants</h2>
+    
+    <div class="archetype-cluster">
+      <div class="archetype-cluster-head">
+        <h2>Brazilian Producer</h2>
+        <span class="summary">Primary commercial Arabica origin. Volume-driven, weather-exposed.</span>
+        <span class="count">3 variants</span>
+      </div>
       <div class="team-grid">
-      <a class="team-card" href="./teams/brazilian_producer_canonical.html">
-        <div class="archetype">Brazilian Producer</div>
-        <div class="company"><span class="swatch" style="background:#22C55E"></span>Santos Producers</div>
-        <div class="city"><span class="flag">🇧🇷</span> Guaxupé, BR</div>
+      <a class="team-card" href="./teams/brazilian_producer_canonical.html" style="--brand-card: #22C55E;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: BR">BR</span>
+        </div>
+        <div class="name">Santos Producers</div>
+        <div class="meta">Guaxupé · canonical</div>
       </a>
 
-      <a class="team-card" href="./teams/daterra_estate.html">
-        <div class="archetype">Brazilian Producer</div>
-        <div class="company"><span class="swatch" style="background:#15803D"></span>Cerrado Single-Estate</div>
-        <div class="city"><span class="flag">🇧🇷</span> Patrocínio, BR</div>
+      <a class="team-card" href="./teams/daterra_estate.html" style="--brand-card: #15803D;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: BR">BR</span>
+        </div>
+        <div class="name">Cerrado Single-Estate</div>
+        <div class="meta">Patrocínio · variant</div>
       </a>
 
-      <a class="team-card" href="./teams/cocapec_paulista.html">
-        <div class="archetype">Brazilian Producer</div>
-        <div class="company"><span class="swatch" style="background:#84CC16"></span>Paulista Smallholders Coop</div>
-        <div class="city"><span class="flag">🇧🇷</span> Franca, BR</div>
+      <a class="team-card" href="./teams/cocapec_paulista.html" style="--brand-card: #84CC16;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: BR">BR</span>
+        </div>
+        <div class="name">Paulista Smallholders Coop</div>
+        <div class="meta">Franca · variant</div>
       </a></div>
     </div>
 
-    <div class="archetype-section">
-      <h2>Ethiopian Producer — 3 variants</h2>
+    <div class="archetype-cluster">
+      <div class="archetype-cluster-head">
+        <h2>Ethiopian Producer</h2>
+        <span class="summary">Specialty Arabica origin. Lower volume, cup-quality premium.</span>
+        <span class="count">3 variants</span>
+      </div>
       <div class="team-grid">
-      <a class="team-card" href="./teams/ethiopian_producer_canonical.html">
-        <div class="archetype">Ethiopian Producer</div>
-        <div class="company"><span class="swatch" style="background:#F59E0B"></span>Yirgacheffe Union</div>
-        <div class="city"><span class="flag">🇪🇹</span> Yirgacheffe, ET</div>
+      <a class="team-card" href="./teams/ethiopian_producer_canonical.html" style="--brand-card: #F59E0B;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: ET">ET</span>
+        </div>
+        <div class="name">Yirgacheffe Union</div>
+        <div class="meta">Yirgacheffe · canonical</div>
       </a>
 
-      <a class="team-card" href="./teams/sidamo_lekempti.html">
-        <div class="archetype">Ethiopian Producer</div>
-        <div class="company"><span class="swatch" style="background:#D97706"></span>Sidamo Washing Stations</div>
-        <div class="city"><span class="flag">🇪🇹</span> Hawassa, ET</div>
+      <a class="team-card" href="./teams/sidamo_lekempti.html" style="--brand-card: #D97706;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: ET">ET</span>
+        </div>
+        <div class="name">Sidamo Washing Stations</div>
+        <div class="meta">Hawassa · variant</div>
       </a>
 
-      <a class="team-card" href="./teams/harrar_dryland.html">
-        <div class="archetype">Ethiopian Producer</div>
-        <div class="company"><span class="swatch" style="background:#B45309"></span>Harrar Dryland Exporter</div>
-        <div class="city"><span class="flag">🇪🇹</span> Dire Dawa, ET</div>
+      <a class="team-card" href="./teams/harrar_dryland.html" style="--brand-card: #B45309;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: ET">ET</span>
+        </div>
+        <div class="name">Harrar Dryland Exporter</div>
+        <div class="meta">Dire Dawa · variant</div>
       </a></div>
     </div>
 
-    <div class="archetype-section">
-      <h2>Trading House Alpha — 3 variants</h2>
+    <div class="archetype-cluster">
+      <div class="archetype-cluster-head">
+        <h2>Trading House Alpha</h2>
+        <span class="summary">Spread-capture intermediary. Highest-volume archetype.</span>
+        <span class="count">3 variants</span>
+      </div>
       <div class="team-grid">
-      <a class="team-card" href="./teams/trading_house_alpha_canonical.html">
-        <div class="archetype">Trading House Alpha</div>
-        <div class="company"><span class="swatch" style="background:#3B82F6"></span>Geneva Trading House</div>
-        <div class="city"><span class="flag">🇨🇭</span> Geneva, CH</div>
+      <a class="team-card" href="./teams/trading_house_alpha_canonical.html" style="--brand-card: #3B82F6;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: CH">CH</span>
+        </div>
+        <div class="name">Geneva Trading House</div>
+        <div class="meta">Geneva · canonical</div>
       </a>
 
-      <a class="team-card" href="./teams/ecom_alpha.html">
-        <div class="archetype">Trading House Alpha</div>
-        <div class="company"><span class="swatch" style="background:#1D4ED8"></span>Atlantic Origin AG</div>
-        <div class="city"><span class="flag">🇨🇭</span> Pully, CH</div>
+      <a class="team-card" href="./teams/ecom_alpha.html" style="--brand-card: #1D4ED8;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: CH">CH</span>
+        </div>
+        <div class="name">Atlantic Origin AG</div>
+        <div class="meta">Pully · variant</div>
       </a>
 
-      <a class="team-card" href="./teams/dreyfus_alpha.html">
-        <div class="archetype">Trading House Alpha</div>
-        <div class="company"><span class="swatch" style="background:#1E40AF"></span>Continental Soft Commodities</div>
-        <div class="city"><span class="flag">🇳🇱</span> Rotterdam, NL</div>
+      <a class="team-card" href="./teams/dreyfus_alpha.html" style="--brand-card: #1E40AF;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: NL">NL</span>
+        </div>
+        <div class="name">Continental Soft Commodities</div>
+        <div class="meta">Rotterdam · variant</div>
       </a></div>
     </div>
 
-    <div class="archetype-section">
-      <h2>Trading House Beta — 3 variants</h2>
+    <div class="archetype-cluster">
+      <div class="archetype-cluster-head">
+        <h2>Trading House Beta</h2>
+        <span class="summary">Robusta-focused trading. Vietnam origin connections.</span>
+        <span class="count">3 variants</span>
+      </div>
       <div class="team-grid">
-      <a class="team-card" href="./teams/trading_house_beta_canonical.html">
-        <div class="archetype">Trading House Beta</div>
-        <div class="company"><span class="swatch" style="background:#06B6D4"></span>Singapore Commodities</div>
-        <div class="city"><span class="flag">🇸🇬</span> Singapore, SG</div>
+      <a class="team-card" href="./teams/trading_house_beta_canonical.html" style="--brand-card: #06B6D4;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: SG">SG</span>
+        </div>
+        <div class="name">Singapore Commodities</div>
+        <div class="meta">Singapore · canonical</div>
       </a>
 
-      <a class="team-card" href="./teams/sucafina_beta.html">
-        <div class="archetype">Trading House Beta</div>
-        <div class="company"><span class="swatch" style="background:#0891B2"></span>Geneva Robusta Desk</div>
-        <div class="city"><span class="flag">🇨🇭</span> Geneva, CH</div>
+      <a class="team-card" href="./teams/sucafina_beta.html" style="--brand-card: #0891B2;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: CH">CH</span>
+        </div>
+        <div class="name">Geneva Robusta Desk</div>
+        <div class="meta">Geneva · variant</div>
       </a>
 
-      <a class="team-card" href="./teams/mercon_beta.html">
-        <div class="archetype">Trading House Beta</div>
-        <div class="company"><span class="swatch" style="background:#155E75"></span>Pan-American Beta</div>
-        <div class="city"><span class="flag">🇺🇸</span> Miami, US</div>
+      <a class="team-card" href="./teams/mercon_beta.html" style="--brand-card: #155E75;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: US">US</span>
+        </div>
+        <div class="name">Pan-American Beta</div>
+        <div class="meta">Miami · variant</div>
       </a></div>
     </div>
 
-    <div class="archetype-section">
-      <h2>Roaster Large — 3 variants</h2>
+    <div class="archetype-cluster">
+      <div class="archetype-cluster-head">
+        <h2>Roaster Large</h2>
+        <span class="summary">Industrial-scale roasting. Stable blend procurement.</span>
+        <span class="count">3 variants</span>
+      </div>
       <div class="team-grid">
-      <a class="team-card" href="./teams/roaster_large_canonical.html">
-        <div class="archetype">Roaster Large</div>
-        <div class="company"><span class="swatch" style="background:#EF4444"></span>European Roasters</div>
-        <div class="city"><span class="flag">🇩🇪</span> Hamburg, DE</div>
+      <a class="team-card" href="./teams/roaster_large_canonical.html" style="--brand-card: #EF4444;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: DE">DE</span>
+        </div>
+        <div class="name">European Roasters</div>
+        <div class="meta">Hamburg · canonical</div>
       </a>
 
-      <a class="team-card" href="./teams/jde_large.html">
-        <div class="archetype">Roaster Large</div>
-        <div class="company"><span class="swatch" style="background:#DC2626"></span>Continental Coffee Holdings</div>
-        <div class="city"><span class="flag">🇳🇱</span> Amsterdam, NL</div>
+      <a class="team-card" href="./teams/jde_large.html" style="--brand-card: #DC2626;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: NL">NL</span>
+        </div>
+        <div class="name">Continental Coffee Holdings</div>
+        <div class="meta">Amsterdam · variant</div>
       </a>
 
-      <a class="team-card" href="./teams/nestle_large.html">
-        <div class="archetype">Roaster Large</div>
-        <div class="company"><span class="swatch" style="background:#B91C1C"></span>Helvetia Soluble Brands</div>
-        <div class="city"><span class="flag">🇨🇭</span> Vevey, CH</div>
+      <a class="team-card" href="./teams/nestle_large.html" style="--brand-card: #B91C1C;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: CH">CH</span>
+        </div>
+        <div class="name">Helvetia Soluble Brands</div>
+        <div class="meta">Vevey · variant</div>
       </a></div>
     </div>
 
-    <div class="archetype-section">
-      <h2>Roaster Specialty — 3 variants</h2>
+    <div class="archetype-cluster">
+      <div class="archetype-cluster-head">
+        <h2>Roaster Specialty</h2>
+        <span class="summary">Direct trade, single-origin. Higher margin, smaller volume.</span>
+        <span class="count">3 variants</span>
+      </div>
       <div class="team-grid">
-      <a class="team-card" href="./teams/roaster_specialty_canonical.html">
-        <div class="archetype">Roaster Specialty</div>
-        <div class="company"><span class="swatch" style="background:#EC4899"></span>Pacific Rim Roasters</div>
-        <div class="city"><span class="flag">🇩🇪</span> Berlin, DE</div>
+      <a class="team-card" href="./teams/roaster_specialty_canonical.html" style="--brand-card: #EC4899;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: DE">DE</span>
+        </div>
+        <div class="name">Pacific Rim Roasters</div>
+        <div class="meta">Berlin · canonical</div>
       </a>
 
-      <a class="team-card" href="./teams/intelligentsia_spec.html">
-        <div class="archetype">Roaster Specialty</div>
-        <div class="company"><span class="swatch" style="background:#DB2777"></span>Pacific Roastworks</div>
-        <div class="city"><span class="flag">🇺🇸</span> Chicago, US</div>
+      <a class="team-card" href="./teams/intelligentsia_spec.html" style="--brand-card: #DB2777;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: US">US</span>
+        </div>
+        <div class="name">Pacific Roastworks</div>
+        <div class="meta">Chicago · variant</div>
       </a>
 
-      <a class="team-card" href="./teams/illy_italian.html">
-        <div class="archetype">Roaster Specialty</div>
-        <div class="company"><span class="swatch" style="background:#BE185D"></span>Trieste Espresso Atelier</div>
-        <div class="city"><span class="flag">🇮🇹</span> Trieste, IT</div>
+      <a class="team-card" href="./teams/illy_italian.html" style="--brand-card: #BE185D;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: IT">IT</span>
+        </div>
+        <div class="name">Trieste Espresso Atelier</div>
+        <div class="meta">Trieste · variant</div>
       </a></div>
     </div>
 
-    <div class="archetype-section">
-      <h2>Shipping &amp; Logistics — 3 variants</h2>
+    <div class="archetype-cluster">
+      <div class="archetype-cluster-head">
+        <h2>Shipping &amp; Logistics</h2>
+        <span class="summary">Service role. Controls freight rates + cross-flow information.</span>
+        <span class="count">3 variants</span>
+      </div>
       <div class="team-grid">
-      <a class="team-card" href="./teams/shipping_logistics_canonical.html">
-        <div class="archetype">Shipping &amp; Logistics</div>
-        <div class="company"><span class="swatch" style="background:#8B5CF6"></span>Global Logistics</div>
-        <div class="city"><span class="flag">🇩🇰</span> Copenhagen, DK</div>
+      <a class="team-card" href="./teams/shipping_logistics_canonical.html" style="--brand-card: #8B5CF6;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: DK">DK</span>
+        </div>
+        <div class="name">Global Logistics</div>
+        <div class="meta">Copenhagen · canonical</div>
       </a>
 
-      <a class="team-card" href="./teams/msc_shipping.html">
-        <div class="archetype">Shipping &amp; Logistics</div>
-        <div class="company"><span class="swatch" style="background:#7C3AED"></span>Mediterranean Shipping Co</div>
-        <div class="city"><span class="flag">🇨🇭</span> Geneva, CH</div>
+      <a class="team-card" href="./teams/msc_shipping.html" style="--brand-card: #7C3AED;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: CH">CH</span>
+        </div>
+        <div class="name">Mediterranean Shipping Co</div>
+        <div class="meta">Geneva · variant</div>
       </a>
 
-      <a class="team-card" href="./teams/kuehne_logistics.html">
-        <div class="archetype">Shipping &amp; Logistics</div>
-        <div class="company"><span class="swatch" style="background:#6D28D9"></span>Continental Forwarding GmbH</div>
-        <div class="city"><span class="flag">🇨🇭</span> Schindellegi, CH</div>
+      <a class="team-card" href="./teams/kuehne_logistics.html" style="--brand-card: #6D28D9;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: CH">CH</span>
+        </div>
+        <div class="name">Continental Forwarding GmbH</div>
+        <div class="meta">Schindellegi · variant</div>
       </a></div>
     </div>
 
-    <div class="archetype-section">
-      <h2>Retailer / Brand Owner — 3 variants</h2>
+    <div class="archetype-cluster">
+      <div class="archetype-cluster-head">
+        <h2>Retailer / Brand Owner</h2>
+        <span class="summary">Downstream demand. Consumer-facing premium / mass-market.</span>
+        <span class="count">3 variants</span>
+      </div>
       <div class="team-grid">
-      <a class="team-card" href="./teams/retailer_brand_canonical.html">
-        <div class="archetype">Retailer / Brand Owner</div>
-        <div class="company"><span class="swatch" style="background:#F97316"></span>Premium Retail Chain</div>
-        <div class="city"><span class="flag">🇩🇪</span> Cologne, DE</div>
+      <a class="team-card" href="./teams/retailer_brand_canonical.html" style="--brand-card: #F97316;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: DE">DE</span>
+        </div>
+        <div class="name">Premium Retail Chain</div>
+        <div class="meta">Cologne · canonical</div>
       </a>
 
-      <a class="team-card" href="./teams/starbucks_retail.html">
-        <div class="archetype">Retailer / Brand Owner</div>
-        <div class="company"><span class="swatch" style="background:#EA580C"></span>Pacific Coffee Cafés</div>
-        <div class="city"><span class="flag">🇺🇸</span> Seattle, US</div>
+      <a class="team-card" href="./teams/starbucks_retail.html" style="--brand-card: #EA580C;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: US">US</span>
+        </div>
+        <div class="name">Pacific Coffee Cafés</div>
+        <div class="meta">Seattle · variant</div>
       </a>
 
-      <a class="team-card" href="./teams/costa_retail.html">
-        <div class="archetype">Retailer / Brand Owner</div>
-        <div class="company"><span class="swatch" style="background:#C2410C"></span>High-Street Coffee Co</div>
-        <div class="city"><span class="flag">🇬🇧</span> Dunstable, GB</div>
+      <a class="team-card" href="./teams/costa_retail.html" style="--brand-card: #C2410C;">
+        <div class="row1">
+          <span class="swatch swatch-lg" aria-hidden="true"></span>
+          <span class="iso-chip" aria-label="Country: GB">GB</span>
+        </div>
+        <div class="name">High-Street Coffee Co</div>
+        <div class="meta">Dunstable · variant</div>
       </a></div>
     </div>
+  </section>
+
 </main>
 
-<footer>
-  ATLAS Pilot Plan B portal · Auto-mirrored from
-  <a href="https://github.com/ACasanovaMazet/capstone-simulation-orchestrator" target="_blank" rel="noopener">orchestrator repo</a>
-  · Generated 2026-05-05 14:28:43 UTC
+<footer class="site-footer">
+  <div class="container">
+    <span>Auto-mirrored from <a href="https://github.com/ACasanovaMazet/capstone-simulation-orchestrator" target="_blank" rel="noopener">orchestrator repo</a></span>
+    <span class="mono" style="color: var(--ink-3);">Generated 2026-05-05 16:33:04 UTC</span>
+  </div>
 </footer>
 </body>
 </html>
