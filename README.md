@@ -7,8 +7,8 @@ This repo is **auto-mirrored** from the private orchestrator repo via GitHub Act
 ## Pages
 
 - `index.html` — landing (public, no password)
-- `teams/<variant-slug>.html` — 24 team briefings (each encrypted with a unique team password via [staticrypt](https://github.com/robinmoisson/staticrypt))
+- `teams/<variant-slug>.html` — 30 team briefings (each encrypted with a unique team password via [staticrypt](https://github.com/robinmoisson/staticrypt))
 - `facilitator.html` — full offline calculator (encrypted with the facilitator password)
 - `assets/styles.css` — shared design tokens
 
-Generated: 2026-05-06T13:39:05.960Z
+Generated: 2026-05-08T05:50:19.891Z
