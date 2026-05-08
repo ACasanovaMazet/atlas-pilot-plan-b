@@ -11,4 +11,4 @@ This repo is **auto-mirrored** from the private orchestrator repo via GitHub Act
 - `facilitator.html` — full offline calculator (encrypted with the facilitator password)
 - `assets/styles.css` — shared design tokens
 
-Generated: 2026-05-08T05:50:19.891Z
+Generated: 2026-05-08T07:01:18.654Z
